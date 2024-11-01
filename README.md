@@ -1,6 +1,7 @@
 # API Project
 
 ## Table of Contents
+
 1. [Introduction](#introduction)
 2. [Features](#features)
 3. [Prerequisites](#prerequisites)
@@ -12,9 +13,11 @@
 9. [Technologies Used](#technologies-used)
 
 ## Introduction
+
 This API provides a comprehensive solution for managing user authentication, categories, and news articles. It offers robust features including JWT-based authentication, role-based access controls, and CRUD operations for categories and news items.
 
 ## Features
+
 - 🔒 JWT-based user authentication
 - 📂 CRUD operations for categories and news items
 - 🛡️ Role-based authorization for admin routes
@@ -22,7 +25,9 @@ This API provides a comprehensive solution for managing user authentication, cat
 - 📖 Comprehensive API documentation with Swagger
 
 ## Prerequisites
+
 Before you begin, ensure you have met the following requirements:
+
 - Node.js (v14 or later)
 - npm (v6 or later)
 - PostgreSQL database
@@ -30,17 +35,20 @@ Before you begin, ensure you have met the following requirements:
 ## Installation
 
 ### 1. Clone the Repository
+
 ```bash
 git clone https://github.com/yourusername/your-repo.git
 cd your-repo
 ```
 
 ### 2. Install Dependencies
+
 ```bash
 npm install
 ```
 
 ## Environment Configuration
+
 Create a `.env` file in the project root with the following variables:
 
 ```bash
@@ -60,6 +68,7 @@ UPLOAD_DIR=uploads
 ## Running the Application
 
 ### Development Mode
+
 ```bash
 # Using npm
 npm run dev
@@ -69,29 +78,34 @@ nodemon
 ```
 
 ### Production Mode
+
 ```bash
 npm start
 ```
 
 ## API Documentation
+
 1. Start the server
 2. Open your web browser
 3. Navigate to `http://localhost:{PORT}/api-docs`
-   *Note: Replace {PORT} with your application's port number*
+   _Note: Replace {PORT} with your application's port number_
 
 ## Endpoints
 
 ### Authentication
+
 - `POST /auth/register`: Register a new user
 - `POST /auth/login`: Log in an existing user
 
 ### Categories
+
 - `GET /categories`: Retrieve all categories
 - `POST /categories`: Create a new category (admin only)
 - `PUT /categories/:id`: Update a category by ID (admin only)
 - `DELETE /categories/:id`: Delete a category by ID (admin only)
 
 ### News
+
 - `GET /news`: Retrieve all news items
 - `GET /news/:id`: Retrieve a specific news item by ID
 - `GET /search`: Search for news items
@@ -101,6 +115,7 @@ npm start
 - `DELETE /news/:id`: Delete a news item by ID (admin only)
 
 ## Technologies Used
+
 - **Runtime:** Node.js
 - **Web Framework:** Express.js
 - **Database:** PostgreSQL
@@ -110,7 +125,9 @@ npm start
 - **Documentation:** Swagger
 
 ## Contributing
+
 Please read `CONTRIBUTING.md` for details on our code of conduct and the process for submitting pull requests.
 
 ## License
+
 This project is licensed under the MIT License - see the `LICENSE.md` file for details.
