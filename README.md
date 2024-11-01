@@ -37,8 +37,8 @@ Before you begin, ensure you have met the following requirements:
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/your-repo.git
-cd your-repo
+git clone https://github.com/webstriiix/news.git
+cd news
 ```
 
 ### 2. Install Dependencies
@@ -53,10 +53,10 @@ Create a `.env` file in the project root with the following variables:
 
 ```bash
 # Server Configuration
-PORT=5000
+PORT=your_application_port
 
 # Database Configuration
-MONGODB_URI=your_mongodb_connection_string
+MONGODB_URI=your_database_connection_string
 
 # Authentication
 JWT_SECRET=your_jwt_secret_key
