@@ -10,6 +10,7 @@
 
 const express = require('express')
 const dotenv = require("dotenv")
+const setupSwagger = require('./swagger');
 const newsRoutes = require('./routes/newsRoutes')
 const authRoutes = require('./routes/authRoutes')
 const categoryRoutes = require('./routes/categoryRoutes');
@@ -17,6 +18,7 @@ const categoryRoutes = require('./routes/categoryRoutes');
 dotenv.config()
 
 const app = express()
+setupSwagger(app);
 const port = process.env.PORT;
 
 // middleware
