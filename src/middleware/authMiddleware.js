@@ -5,25 +5,7 @@
 * 
 **/
 
-/**
- * @swagger
- * components:
- *   securitySchemes:
- *     bearerAuth:
- *       type: http
- *       scheme: bearer
- *       bearerFormat: JWT
- * 
- * @swagger
- * components:
- *   schemas:
- *     Error:
- *       type: object
- *       properties:
- *         message:
- *           type: string
- *           description: Error message
- */
+
 
 /**
  * @swagger
