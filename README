@@ -1,0 +1,110 @@
+# API Project
+
+## Table of Contents
+
+1. [Introduction](#introduction)
+2. [Features](#features)
+3. [Installation](#installation)
+4. [Environment Variables](#environment-variables)
+5. [Running the Application](#running-the-application)
+6. [API Documentation](#api-documentation)
+7. [Endpoints](#endpoints)
+8. [Technologies Used](#technologies-used)
+
+## Introduction
+
+This API is designed for managing user authentication, categories, and news articles. It includes endpoints for user registration, login, and various CRUD operations for categories and news, with role-based access controls.
+
+## Features
+
+- JWT-based user authentication
+- CRUD operations for categories and news items
+- Role-based authorization for admin routes
+- File upload support for news thumbnails
+- Comprehensive API documentation with Swagger
+
+## Installation
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/yourusername/your-repo.git
+   cd your-repo
+   ```
+
+2. Install Dependencies
+   ```bash
+   npm install
+   ```
+
+## Environment Variables
+
+Create a .env file in the project root and configure the following variables:
+
+```bash
+PORT=5000
+MONGODB_URI=your_mongodb_connection_string
+JWT_SECRET=your_jwt_secret_key
+UPLOAD_DIR=uploads
+
+```
+
+## Running the Application
+
+To run application you can use two command:
+
+```bash
+npm run dev
+
+```
+
+```bash
+nodemon
+
+```
+
+## API Documentation
+
+To view Api documentation follow this steps:
+
+1. Run the server.
+2. Open web browser and type this url http://localhost:PORT/api-docs.
+   note: remove the PORT with your own application port
+
+## Endpoints
+
+Authentication
+
+- POST /auth/register: Register a new user.
+- POST /auth/login: Log in an existing user.
+
+Categories
+
+- GET /categories: Retrieve all categories.
+- POST /categories: Create a new category (admin only).
+- PUT /categories/
+  : Update a category by ID (admin only).
+- DELETE /categories/
+  : Delete a category by ID (admin only).
+
+News
+
+- GET /news: Retrieve all news items.
+- GET /news/
+  : Retrieve a specific news item by ID.
+- GET /search: Search for news items by keyword, category ID, or author ID.
+- POST /news: Create a new news item (admin only).
+- PUT /news/
+  : Update a news item by ID (admin only).
+- DELETE /news/
+  : Delete a news item by ID (admin only).
+
+Technologies Used
+
+- Node.js: Runtime environment
+- Express.js: Web framework for building APIs
+- PostgreSQL
+- Prisma: ORM for postgresql
+- JWT: JSON Web Token for authentication
+- Multer: Middleware for handling file uploads
+- Swagger: API documentation
