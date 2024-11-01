@@ -1,110 +1,116 @@
 # API Project
 
 ## Table of Contents
-
 1. [Introduction](#introduction)
 2. [Features](#features)
-3. [Installation](#installation)
-4. [Environment Variables](#environment-variables)
-5. [Running the Application](#running-the-application)
-6. [API Documentation](#api-documentation)
-7. [Endpoints](#endpoints)
-8. [Technologies Used](#technologies-used)
+3. [Prerequisites](#prerequisites)
+4. [Installation](#installation)
+5. [Environment Configuration](#environment-configuration)
+6. [Running the Application](#running-the-application)
+7. [API Documentation](#api-documentation)
+8. [Endpoints](#endpoints)
+9. [Technologies Used](#technologies-used)
 
 ## Introduction
-
-This API is designed for managing user authentication, categories, and news articles. It includes endpoints for user registration, login, and various CRUD operations for categories and news, with role-based access controls.
+This API provides a comprehensive solution for managing user authentication, categories, and news articles. It offers robust features including JWT-based authentication, role-based access controls, and CRUD operations for categories and news items.
 
 ## Features
+- 🔒 JWT-based user authentication
+- 📂 CRUD operations for categories and news items
+- 🛡️ Role-based authorization for admin routes
+- 📤 File upload support for news thumbnails
+- 📖 Comprehensive API documentation with Swagger
 
-- JWT-based user authentication
-- CRUD operations for categories and news items
-- Role-based authorization for admin routes
-- File upload support for news thumbnails
-- Comprehensive API documentation with Swagger
+## Prerequisites
+Before you begin, ensure you have met the following requirements:
+- Node.js (v14 or later)
+- npm (v6 or later)
+- PostgreSQL database
 
 ## Installation
 
-1. Clone the repository:
+### 1. Clone the Repository
+```bash
+git clone https://github.com/yourusername/your-repo.git
+cd your-repo
+```
 
-   ```bash
-   git clone https://github.com/yourusername/your-repo.git
-   cd your-repo
-   ```
+### 2. Install Dependencies
+```bash
+npm install
+```
 
-2. Install Dependencies
-   ```bash
-   npm install
-   ```
-
-## Environment Variables
-
-Create a .env file in the project root and configure the following variables:
+## Environment Configuration
+Create a `.env` file in the project root with the following variables:
 
 ```bash
+# Server Configuration
 PORT=5000
-MONGODB_URI=your_mongodb_connection_string
-JWT_SECRET=your_jwt_secret_key
-UPLOAD_DIR=uploads
 
+# Database Configuration
+MONGODB_URI=your_mongodb_connection_string
+
+# Authentication
+JWT_SECRET=your_jwt_secret_key
+
+# File Upload
+UPLOAD_DIR=uploads
 ```
 
 ## Running the Application
 
-To run application you can use two command:
-
+### Development Mode
 ```bash
+# Using npm
 npm run dev
 
+# Alternatively
+nodemon
 ```
 
+### Production Mode
 ```bash
-nodemon
-
+npm start
 ```
 
 ## API Documentation
-
-To view Api documentation follow this steps:
-
-1. Run the server.
-2. Open web browser and type this url http://localhost:PORT/api-docs.
-   note: remove the PORT with your own application port
+1. Start the server
+2. Open your web browser
+3. Navigate to `http://localhost:{PORT}/api-docs`
+   *Note: Replace {PORT} with your application's port number*
 
 ## Endpoints
 
-Authentication
+### Authentication
+- `POST /auth/register`: Register a new user
+- `POST /auth/login`: Log in an existing user
 
-- POST /auth/register: Register a new user.
-- POST /auth/login: Log in an existing user.
+### Categories
+- `GET /categories`: Retrieve all categories
+- `POST /categories`: Create a new category (admin only)
+- `PUT /categories/:id`: Update a category by ID (admin only)
+- `DELETE /categories/:id`: Delete a category by ID (admin only)
 
-Categories
+### News
+- `GET /news`: Retrieve all news items
+- `GET /news/:id`: Retrieve a specific news item by ID
+- `GET /search`: Search for news items
+  - Query parameters: keyword, categoryId, authorId
+- `POST /news`: Create a new news item (admin only)
+- `PUT /news/:id`: Update a news item by ID (admin only)
+- `DELETE /news/:id`: Delete a news item by ID (admin only)
 
-- GET /categories: Retrieve all categories.
-- POST /categories: Create a new category (admin only).
-- PUT /categories/
-  : Update a category by ID (admin only).
-- DELETE /categories/
-  : Delete a category by ID (admin only).
+## Technologies Used
+- **Runtime:** Node.js
+- **Web Framework:** Express.js
+- **Database:** PostgreSQL
+- **ORM:** Prisma
+- **Authentication:** JWT (JSON Web Tokens)
+- **File Uploads:** Multer
+- **Documentation:** Swagger
 
-News
+## Contributing
+Please read `CONTRIBUTING.md` for details on our code of conduct and the process for submitting pull requests.
 
-- GET /news: Retrieve all news items.
-- GET /news/
-  : Retrieve a specific news item by ID.
-- GET /search: Search for news items by keyword, category ID, or author ID.
-- POST /news: Create a new news item (admin only).
-- PUT /news/
-  : Update a news item by ID (admin only).
-- DELETE /news/
-  : Delete a news item by ID (admin only).
-
-Technologies Used
-
-- Node.js: Runtime environment
-- Express.js: Web framework for building APIs
-- PostgreSQL
-- Prisma: ORM for postgresql
-- JWT: JSON Web Token for authentication
-- Multer: Middleware for handling file uploads
-- Swagger: API documentation
+## License
+This project is licensed under the MIT License - see the `LICENSE.md` file for details.
