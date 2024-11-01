@@ -4,8 +4,41 @@
 *
 **/
 
+
+
 const {PrismaClient}  = require('@prisma/client')
 const prisma = new PrismaClient()
+
+/**
+ * @swagger
+ * tags:
+ *   name: Categories
+ *   description: API endpoints for managing categories
+ */
+
+/**
+ * @swagger
+ * /categories:
+ *   get:
+ *     summary: Retrieve all categories
+ *     tags: [Categories]
+ *     responses:
+ *       200:
+ *         description: Successfully retrieved all categories
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 type: object
+ *                 properties:
+ *                   id:
+ *                     type: integer
+ *                   name:
+ *                     type: string
+ *       500:
+ *         description: Internal server error
+ */
 
 
 // Get all categories
@@ -18,6 +51,43 @@ const getCategories = async (req, res) => {
         res.status(500).json({ error: "Failed to fetch categories" })
     }
 }
+
+/**
+ * @swagger
+ * /categories:
+ *   post:
+ *     summary: Create a new category
+ *     tags: [Categories]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               name:
+ *                 type: string
+ *                 description: Name of the category
+ *     responses:
+ *       201:
+ *         description: Category created successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                 category:
+ *                   type: object
+ *                   properties:
+ *                     id:
+ *                       type: integer
+ *                     name:
+ *                       type: string
+ *       500:
+ *         description: Failed to create category
+ */
 
 // Create New Categories
 const createCategory = async (req, res) => {
@@ -32,6 +102,50 @@ const createCategory = async (req, res) => {
         res.status(500).json({ error: "Failed to create category" })
     }
 }
+
+/**
+ * @swagger
+ * /categories/{id}:
+ *   put:
+ *     summary: Update an existing category
+ *     tags: [Categories]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *         description: ID of the category to update
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               name:
+ *                 type: string
+ *                 description: New name for the category
+ *     responses:
+ *       200:
+ *         description: Category updated successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                 updateCategory:
+ *                   type: object
+ *                   properties:
+ *                     id:
+ *                       type: integer
+ *                     name:
+ *                       type: string
+ *       500:
+ *         description: Failed to update category
+ */
 
 // Update Category
 const updateCategory = async (req, res) => {
@@ -50,6 +164,26 @@ const updateCategory = async (req, res) => {
         res.status(500).json({ message: "Failed to update category" })
     }
 }
+
+/**
+ * @swagger
+ * /categories/{id}:
+ *   delete:
+ *     summary: Delete a category
+ *     tags: [Categories]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *         description: ID of the category to delete
+ *     responses:
+ *       200:
+ *         description: Category deleted successfully
+ *       500:
+ *         description: Failed to delete category
+ */
 
 // Delete category
 const deleteCategory = async (req, res)=> {

@@ -4,10 +4,86 @@
 *
 */
 
+/**
+ * @swagger
+ * tags:
+ *   name: News
+ *   description: CRUD operations for news articles
+ */
+
 const { PrismaClient } = require('@prisma/client')
 const fs = require('fs')
 
 const prisma = new PrismaClient()
+
+/**
+ * @swagger
+ * /news/search:
+ *   get:
+ *     summary: Search for news items
+ *     tags: [News]
+ *     parameters:
+ *       - in: query
+ *         name: keyword
+ *         schema:
+ *           type: string
+ *         description: Keyword to search in the title or content of the news
+ *       - in: query
+ *         name: categoryId
+ *         schema:
+ *           type: integer
+ *         description: ID of the category to filter news by
+ *       - in: query
+ *         name: authorId
+ *         schema:
+ *           type: integer
+ *         description: ID of the author to filter news by
+ *     responses:
+ *       200:
+ *         description: News items retrieved successfully based on search criteria
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 news:
+ *                   type: array
+ *                   items:
+ *                     type: object
+ *                     properties:
+ *                       id:
+ *                         type: integer
+ *                       title:
+ *                         type: string
+ *                       content:
+ *                         type: string
+ *                       categories:
+ *                         type: array
+ *                         items:
+ *                           type: object
+ *                           properties:
+ *                             id:
+ *                               type: integer
+ *                             name:
+ *                               type: string
+ *                       author:
+ *                         type: object
+ *                         properties:
+ *                           id:
+ *                             type: integer
+ *                           name:
+ *                             type: string
+ *       500:
+ *         description: Failed to search for news items
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: "Failed search news"
+ */
 
 // Search for News
 const searchNews = async (req, res) => {
@@ -39,6 +115,20 @@ const searchNews = async (req, res) => {
     }
 }
 
+/**
+ * @swagger
+ * /news:
+ *   get:
+ *     summary: Retrieve a list of news articles
+ *     tags: [News]
+ *     responses:
+ *       200:
+ *         description: Successfully retrieved list of news articles
+ *       500:
+ *         description: Internal server error
+ */
+
+
 // Get all news and their author
 const getAllNews = async (req, res) => {
 
@@ -60,6 +150,28 @@ const getAllNews = async (req, res) => {
         return res.status(500).json({ message: "Failed to get the news list" })
     }
 }
+
+/**
+ * @swagger
+ * /news/{id}:
+ *   get:
+ *     summary: Get details of a news article
+ *     tags: [News]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *         description: The news article ID
+ *     responses:
+ *       200:
+ *         description: Successfully retrieved the news article
+ *       404:
+ *         description: News article not found
+ *       500:
+ *         description: Internal server error
+ */
 
 // Get news details
 const getNewsDetails = async (req, res) => {
@@ -84,6 +196,36 @@ const getNewsDetails = async (req, res) => {
         return res.status(500).json({ error: "Failed to fetch news details" })
     }
 }
+
+/**
+ * @swagger
+ * /news:
+ *   post:
+ *     summary: Create a new news article
+ *     tags: [News]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               title:
+ *                 type: string
+ *               content:
+ *                 type: string
+ *               categories:
+ *                 type: array
+ *                 items:
+ *                   type: integer
+ *               published:
+ *                 type: boolean
+ *     responses:
+ *       201:
+ *         description: News article created successfully
+ *       500:
+ *         description: Failed to create news article
+ */
 
 // Create News
 const createNews = async (req, res) => {
@@ -121,6 +263,43 @@ const createNews = async (req, res) => {
     }
 }
 
+/**
+ * @swagger
+ * /news/{id}:
+ *   put:
+ *     summary: Update an existing news article
+ *     tags: [News]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *         description: The news article ID
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               title:
+ *                 type: string
+ *               content:
+ *                 type: string
+ *               categories:
+ *                 type: array
+ *                 items:
+ *                   type: integer
+ *               published:
+ *                 type: boolean
+ *     responses:
+ *       200:
+ *         description: News article updated successfully
+ *       500:
+ *         description: Failed to update news article
+ */
+
 // Update News
 const updateNews = async (req, res) => {
     const { id }  = req.params
@@ -157,6 +336,42 @@ const updateNews = async (req, res) => {
         return res.status(500).json({ error: "Failed to update News" })
     }
 }
+
+/**
+ * @swagger
+ * /news/{id}:
+ *   delete:
+ *     summary: Delete a news item
+ *     tags: [News]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *         description: ID of the news item to delete
+ *     responses:
+ *       200:
+ *         description: News item deleted successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: "Successfully deleting news"
+ *       500:
+ *         description: Failed to delete news item
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: "Failed to delete news"
+ */
 
 // Deleting news
 const deleteNews = async (req, res) => {

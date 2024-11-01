@@ -2,6 +2,13 @@
     The Controller for Authentication with JWT and hashing password
     JWT_TOKEN intialized at the .env using random string generator
 * **/
+/**
+ * @swagger
+ * tags:
+ *   name: Authentication
+ *   description: Endpoints for user authentication
+ */
+
 
 const { PrismaClient } = require('@prisma/client')
 const bcrypt = require('bcryptjs')
@@ -9,6 +16,35 @@ const jwt = require('jsonwebtoken')
 
 const prisma = new PrismaClient()
 const JWT_TOKEN = process.env.JWT_TOKEN
+
+
+/**
+ * @swagger
+ * /auth/register:
+ *   post:
+ *     summary: Register a new user
+ *     tags: [Authentication]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               email:
+ *                 type: string
+ *               username:
+ *                 type: string
+ *               password:
+ *                 type: string
+ *     responses:
+ *       201:
+ *         description: User successfully registered
+ *       400:
+ *         description: User already exists
+ *       500:
+ *         description: Internal server error
+ */
 
 /** 
     User Registration Function    
@@ -58,6 +94,32 @@ const register = async (req, res)=> {
     }
 }
 
+
+/**
+ * @swagger
+ * /auth/login:
+ *   post:
+ *     summary: Log in an existing user
+ *     tags: [Authentication]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               email:
+ *                 type: string
+ *               password:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: Successful login
+ *       401:
+ *         description: Invalid password or email
+ *       500:
+ *         description: Internal server error
+ */
 
 /** 
     Login Function
