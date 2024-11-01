@@ -1,0 +1,32 @@
+{
+  "name": "pre-interview",
+  "version": "1.0.0",
+  "description": "News Api for pre-interview",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/webstriiix/news-api.git"
+  },
+  "author": "webstriix",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/webstriiix/news-api/issues"
+  },
+  "homepage": "https://github.com/webstriiix/news-api#readme",
+  "dependencies": {
+    "@prisma/client": "^5.21.1",
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "jsonwebtoken": "^9.0.2",
+    "multer": "^1.4.5-lts.1",
+    "pg": "^8.13.1",
+    "prisma": "^5.21.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.7"
+  }
+}
